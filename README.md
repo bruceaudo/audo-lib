@@ -20,16 +20,53 @@ npm install audo-lib
 
 ```js
 const audoLib = require("audo-lib");
-
-// Validate user information when logging in
-try {
-  const isUserValid = audoLib.validate({
-    email: "test@email.com",
-    password: "Examplepassword12345!",
-  });
-} catch (error) {
-  // Do something with error info
-}
 ```
 
 ## Features
+
+1. ### Validating user input
+
+```js
+const audoLib = require("audo-lib");
+
+try {
+  const isUserValid = audoLib.validate({
+    email: "test@email.com",
+    password: "PAssword12345!",
+    confirmPassword: "PAssword12345!",
+  });
+} catch (error) {
+  //...
+}
+```
+
+2. ### Hashing passwords
+
+```js
+const audoLib = require("audo-lib");
+
+const password = "PAssword12345!";
+
+// Wrap this in an async function
+try {
+  const isUserValid = await audoLib.hashPassword(password);
+} catch (error) {
+  //...
+}
+```
+
+3. ### Verifying passwords
+
+```js
+const audoLib = require("audo-lib");
+
+const password = "PAssword12345!";
+const hashedPassword = "sfd63dgevuqdt3fq376dgev" // Hash from a database etc
+
+// Wrap this in an async function
+try {
+  const isPasswordCorrect = await audoLib.verifyPassword(hashedPassword, password);
+} catch (error) {
+  //...
+}
+```

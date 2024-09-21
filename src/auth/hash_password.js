@@ -17,7 +17,7 @@ class HashingError extends Error {
  * ```
  *
  * @param { string } password - Password provided by user
- * @returns { string } - The hashed password
+ * @returns { string } - The hashed password, if the hashing succeeds
  * @throws { HashingError } - When password hashing fails, the HashingError is thrown
  */
 const hashPassword = async (password) => {
