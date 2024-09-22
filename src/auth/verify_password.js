@@ -13,12 +13,12 @@ class PasswordVerificationError extends Error {
  *
  * ### Example
  * ```js
- *  await verifyPassword("hash","password");
+ *  const isPasswordValid = await verifyPassword("hash","password");
  * ```
  *
  * @param {string} hash - The password hash
  * @param {string} password - The password that needs to be verified against the password hash
- * @returns {boolean} - Returns true if password and hash match and false otherwise
+ * @returns {Promise<boolean>} - Returns true if password and hash match and false otherwise
  * @throws { PasswordVerificationError } - When an error occurs during password verification
  */
 const verifyPassword = async (hash, password) => {
@@ -33,13 +33,11 @@ const verifyPassword = async (hash, password) => {
     );
   }
   try {
-    if (await argon2.verify(hash, password)) {
-      return true;
-    } else {
-      return false;
-    }
+    return await argon2.verify(hash, password);
   } catch (err) {
-    throw new PasswordVerificationError(err.message);
+    throw new PasswordVerificationError(
+      `Password verification failed with err: ${err.message}`
+    );
   }
 };
 

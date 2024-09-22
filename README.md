@@ -61,11 +61,47 @@ try {
 const audoLib = require("audo-lib");
 
 const password = "PAssword12345!";
-const hashedPassword = "sfd63dgevuqdt3fq376dgev" // Hash from a database etc
+const hashedPassword = "sfd63dgevuqdt3fq376dgev"; // Hash from a database etc
 
 // Wrap this in an async function
 try {
-  const isPasswordCorrect = await audoLib.verifyPassword(hashedPassword, password);
+  const isPasswordCorrect = await audoLib.verifyPassword(
+    hashedPassword,
+    password
+  );
+} catch (error) {
+  //...
+}
+```
+
+4. ### Generate JWT token
+
+```js
+const audoLib = require("audo-lib");
+
+const payload = {
+  email: "test@email.com",
+  role: "user",
+};
+
+// Wrap this in an async function
+try {
+  const token = await audoLib.getJwtToken(payload);
+} catch (error) {
+  //...
+}
+```
+
+5. ### Verify JWT token
+
+```js
+const audoLib = require("audo-lib");
+
+const token = "token"; // This is an example token. The real token can be extracted from the cookie
+
+// Wrap this in an async function
+try {
+  const payload = await audoLib.verifyJwtToken(token);
 } catch (error) {
   //...
 }

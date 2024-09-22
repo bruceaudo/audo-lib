@@ -15,7 +15,7 @@ class ValidationError extends Error {}
  *
  * ### Example
  * ```js
- * validate_user({ email: 'test@example.com', password: 'password123' });
+ * const isUserInfoValid = validate_user({ email: 'test@example.com', password: 'password123' });
  * ```
  *
  * @param {Object} args - An object with user fields to validate.

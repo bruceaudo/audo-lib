@@ -13,16 +13,16 @@ class HashingError extends Error {
  *
  * ### Example
  * ```js
- *  await hashPassword("password");
+ *  const hash = await hashPassword("password");
  * ```
  *
  * @param { string } password - Password provided by user
- * @returns { string } - The hashed password, if the hashing succeeds
+ * @returns { Promise<string> } - The hashed password, if the hashing succeeds
  * @throws { HashingError } - When password hashing fails, the HashingError is thrown
  */
 const hashPassword = async (password) => {
   if (!password) {
-    throw new HashingError("No password string has been provided");
+    throw new HashingError("Password is required");
   }
   if (typeof password !== "string") {
     throw new HashingError("Password must be a string");
@@ -31,7 +31,7 @@ const hashPassword = async (password) => {
     const hash = await argon2.hash(password);
     return hash;
   } catch (err) {
-    throw new HashingError(err.message);
+    throw new HashingError(`Password hashing failed: ${err.message}`);
   }
 };
 

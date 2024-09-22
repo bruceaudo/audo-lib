@@ -8,9 +8,7 @@ test("Tests if hashPassword function works correctly", async () => {
 
 test("Tests if hashPassword function throws error if password not provided", async () => {
   const password = "";
-  await expect(hashPassword(password)).rejects.toThrow(
-    "No password string has been provided"
-  );
+  await expect(hashPassword(password)).rejects.toThrow("Password is required");
 });
 
 test("Tests if hashPassword function throws error if password is not a string", async () => {
